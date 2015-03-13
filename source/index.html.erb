@@ -1,0 +1,136 @@
+---
+title: Dollars chat
+---
+
+<div class="welcome">
+  <h1>Dollars chat</h1>
+  <hr />
+  <input type="text" id="messageTextBox"></input>
+  <button onclick="addStart();">aaa</button>
+
+  <div id="messageList">
+  </div>
+
+  <script type="text/javascript">
+  	var i = 0;
+
+  	$(window).scroll(function() {       
+	    if( $(window).scrollTop() >= $(document).height() - $(window).height() - 30 ) {
+	        paginateEnd()
+	    }
+	});
+
+	function makechatbox(name, pic, message, type)
+	{
+		var messageBox = document.createElement('div');
+	    messageBox.setAttribute("class", "messageBox");
+
+
+	    var idDiv = document.createElement('div');
+	    idDiv.setAttribute("id", "idContainer");
+	    messageBox.appendChild(idDiv);
+
+	    var imageDiv = document.createElement('div');
+	    imageDiv.setAttribute("id", "imageContainer");
+	    idDiv.appendChild(imageDiv);
+
+
+
+	    var image = document.createElement('img');
+	    image.setAttribute("src", "images/" + pic);
+	    image.setAttribute("id", "image");
+
+	    imageDiv.appendChild(image);
+
+	    var nameDiv = document.createElement('div');
+	    nameDiv.setAttribute("id", "name");
+	    nameDiv.innerHTML = name;
+	    idDiv.appendChild(nameDiv);
+
+	    var messageContainer = document.createElement('div');
+	    messageContainer.setAttribute("id", "messageContainer");
+	    messageContainer.setAttribute("class", "animation-target ");
+
+	    var messageDiv = document.createElement('div');
+	    messageDiv.setAttribute("id", "message");
+
+	    messageContainer.appendChild(messageDiv);
+
+	    messageDiv.innerHTML = message;
+	    messageBox.appendChild(messageContainer);
+
+
+	    var messageContainerArrow = document.createElement('div');
+	    messageContainerArrow.setAttribute("id", "messageContainerArrow");
+
+	    messageContainer.appendChild(messageContainerArrow);
+
+
+
+		return messageBox;
+	}
+
+	function paginateEnd()
+	{
+    	var c = 0;
+    	for (c=0; c<10; c++)
+    	{
+    		addEnd();
+    	}
+	}
+
+	function resizeMessageBoxToFitContent(mbox)
+	{
+		var messageContainer = $(mbox).children("#messageContainer");
+		var messageContainerArrow = $(mbox).children("#messageContainer").children("#messageContainerArrow");
+		var height = $(mbox).children("#messageContainer").height();
+		$(mbox).height(height);
+
+		var center = Math.floor(height / 2);
+		var lowercenter = Math.floor(height / 2) + 1;
+
+		messageContainer.attr("style", "background: #ffb76b; /* Old browsers */  \
+background: -moz-linear-gradient(top,  #ffb76b 0px, #ffa73d " + center + "px, #ff7c00 " + lowercenter + "px, #ff7f04 100%); /* FF3.6+ */ \
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0px,#ffb76b), color-stop(" + center + "px,#ffa73d), color-stop(" + lowercenter + "px,#ff7c00), color-stop(100%,#ff7f04)); /* Chrome,Safari4+ */ \
+background: -webkit-linear-gradient(top,  #ffb76b 0px,#ffa73d " + center + "px,#ff7c00 " + lowercenter + "px,#ff7f04 100%); /* Chrome10+,Safari5.1+ */ \
+background: -o-linear-gradient(top,  #ffb76b 0px,#ffa73d " + center + "px,#ff7c00 " + lowercenter + "px,#ff7f04 100%); /* Opera 11.10+ */ \
+background: -ms-linear-gradient(top,  #ffb76b 0px,#ffa73d " + center + "px,#ff7c00 " + lowercenter + "px,#ff7f04 100%); /* IE10+ */ \
+background: linear-gradient(top,  #ffb76b 0px,#ffa73d " + center + "px,#ff7c00 " + lowercenter + "px,#ff7f04 100%); /* W3C */ \
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */ \
+");
+
+		var offcenterness = (center - 40) * 0.7;
+		var arrowcenter = center - 30 + offcenterness;
+		var arrowlowercenter = lowercenter - 30 + offcenterness;
+		var arrowbottom = arrowlowercenter + 9 + offcenterness;
+
+		messageContainerArrow.attr("style", "background: #ffb76b; /* Old browsers */  \
+background: -moz-linear-gradient(top,  #ffb76b -37px, #ffa73d " + arrowcenter + "px, #ff7c00 " + arrowlowercenter + "px, #ff7f04 " + arrowbottom + "px); /* FF3.6+ */ \
+background: -webkit-gradient(linear, left top, left bottom, color-stop(-37px,#ffb76b), color-stop(" + arrowcenter + "px,#ffa73d), color-stop(" + arrowlowercenter + "px,#ff7c00), color-stop(" + arrowbottom + "px,#ff7f04)); /* Chrome,Safari4+ */ \
+background: -webkit-linear-gradient(top,  #ffb76b -37px,#ffa73d " + arrowcenter + "px,#ff7c00 " + arrowlowercenter + "px,#ff7f04 " + arrowbottom + "px); /* Chrome10+,Safari5.1+ */ \
+background: -o-linear-gradient(top,  #ffb76b -37px,#ffa73d " + arrowcenter + "px,#ff7c00 " + arrowlowercenter + "px,#ff7f04 " + arrowbottom + "px); /* Opera 11.10+ */ \
+background: -ms-linear-gradient(top,  #ffb76b -37px,#ffa73d " + arrowcenter + "px,#ff7c00 " + arrowlowercenter + "px,#ff7f04 " + arrowbottom + "px); /* IE10+ */ \
+background: linear-gradient(-225deg,  #ffb76b -37px,#ffa73d " + arrowcenter + "px,#ff7c00 " + arrowlowercenter + "px,#ff7f04 " + arrowbottom + "px); /* W3C */ \
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */ \
+");
+	}
+
+  	function addStart()
+  	{
+  		var mbox = makechatbox("セットン", "default_pic.jpg", $("#messageTextBox").val() );
+		$("#messageList").prepend( mbox );
+
+		resizeMessageBoxToFitContent(mbox);
+  	}
+
+
+  	function addEnd()
+  	{
+  		var mbox = makechatbox("きど", "default_pic.jpg", "hello " + (i++));
+		$("#messageList").append( mbox );
+
+		resizeMessageBoxToFitContent(mbox);
+  	}
+
+  </script>
+</div><!-- .welcome -->
