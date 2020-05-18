@@ -7,7 +7,8 @@ body {
 {
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
+    min-width: 20em;
+    max-width: 60em
 }
 
 .messageBox
@@ -16,7 +17,7 @@ body {
   min-height: 80px;
   overflow: visible;
   background-color: black;
-  margin: 20px;
+  margin: 40px;
 }
 
 .messageBox #idContainer
@@ -34,14 +35,14 @@ body {
   margin-right: auto;
   left: 0px;
   top: 0px;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
 
 .messageBox #image
 {
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
 
 .messageBox #name
@@ -76,6 +77,7 @@ body {
 
 .messageBox #messageContainer
 {
+  max-width: 50%;
   display: table;
   position:absolute;
   left: 120px;
