@@ -3,10 +3,15 @@ title: Dollars chat
 ---
 
 <div class="welcome">
-  <h1>Dollars chat</h1>
-  <hr />
-  <input type="text" id="messageTextBox"></input>
-  <button onclick="addStart();">aaa</button>
+  <div id="windowHeader">
+    <div id="inputArea">
+      <div id="textArea">
+        <img id="posterImage" src="images/default_pic.jpg">
+        <textarea id="messageTextBox"></textarea>
+      </div>
+      <button id="messagePostButton" onclick="addStart();">POST!</button>
+    </div>
+  </div>
 
   <div id="messageList">
   </div>
